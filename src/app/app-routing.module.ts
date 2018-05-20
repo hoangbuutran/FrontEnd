@@ -1,0 +1,29 @@
+import { NgModule, Component } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { NgModel } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AdminModule } from './admin/admin.module';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+
+const routesConfig: Routes = [
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
+    { path: '**', component: PageNotFoundComponent },
+];
+
+@NgModule({
+    imports: [
+        RouterModule.forRoot(routesConfig),
+        CommonModule
+    ],
+    declarations: [
+    ],
+    exports: [RouterModule]
+})
+export class AppRoutingModule {
+
+}
